@@ -1,7 +1,7 @@
-import User from '../models/users';
+import { verify } from 'jsonwebtoken';
+import User from '../models/user';
 import config from '../../config';
 import { getToken } from '../utils/auth';
-import { verify } from 'jsonwebtoken';
 
 export async function ensureUser(ctx, next) {
   const token = getToken(ctx);
@@ -17,7 +17,7 @@ export async function ensureUser(ctx, next) {
     ctx.throw(401);
   }
 
-  ctx.state.user = await User.findById(decoded.id, '-password');
+  ctx.state.user = await User.findById(decoded.id, '-senha');
   if (!ctx.state.user) {
     ctx.throw(401);
   }
