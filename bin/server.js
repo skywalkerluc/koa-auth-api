@@ -1,3 +1,5 @@
+/* eslint-disable require-yield */
+/* eslint-disable func-names */
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import convert from 'koa-convert';
