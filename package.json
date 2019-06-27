@@ -1,7 +1,7 @@
 {
-  "name": "koa2-api-boilerplate",
-  "version": "2.2.0",
-  "description": "Koa2 boilerplate covering essentials for APIs",
+  "name": "koa-auth-api",
+  "version": "1.0.0",
+  "description": "Koa Authentication API",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -11,11 +11,8 @@
     "docs": "./node_modules/.bin/apidoc -i src/ -o docs"
   },
   "keywords": [
-    "koa2-api-boilerplate",
     "api",
-    "koa",
     "koa2",
-    "boilerplate",
     "es6",
     "mongoose",
     "passportjs",
@@ -24,7 +21,7 @@
   "author": "Lucas Ferreira <lucas.h.ferreira@accenture.com>",
   "license": "MIT",
   "apidoc": {
-    "title": "koa2-api-boilerplate",
+    "title": "koa-auth-api",
     "url": "localhost:5000"
   },
   "repository": {

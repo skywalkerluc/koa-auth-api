@@ -1,4 +1,4 @@
-import passport from 'koa-passport'
+import passport from 'koa-passport';
 
 /**
  * @apiDefine TokenError
@@ -50,21 +50,21 @@ import passport from 'koa-passport'
  *     }
  */
 
-export async function authUser (ctx, next) {
-  return passport.authenticate('local', (user) => {
+export async function authUser(ctx, next) {
+  return passport.authenticate('local', user => {
     if (!user) {
-      ctx.throw(401)
+      ctx.throw(401);
     }
 
-    const token = user.generateToken()
+    const token = user.generateToken();
 
-    const response = user.toJSON()
+    const response = user.toJSON();
 
-    delete response.password
+    delete response.password;
 
     ctx.body = {
       token,
       user: response
-    }
-  })(ctx, next)
+    };
+  })(ctx, next);
 }
