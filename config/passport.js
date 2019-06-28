@@ -19,26 +19,25 @@ passport.use(
   'local',
   new Strategy(
     {
-      emailField: 'email',
-      senhaField: 'senha'
+      usernameField: 'email',
+      passwordField: 'senha'
     },
-    async (email, senha, done) => {
+    async (email, password, done) => {
       try {
         const user = await UserModel.findOne({ email });
+
         if (!user) {
           return done(null, false);
         }
 
         try {
-          const isMatch = await user.validatePassword(senha);
-
+          const isMatch = await user.validatePassword(password);
           if (!isMatch) {
             return done(null, false);
           }
-
-          done(null, user);
+          return done(user);
         } catch (err) {
-          done(err);
+          return done(err);
         }
       } catch (err) {
         return done(err);
