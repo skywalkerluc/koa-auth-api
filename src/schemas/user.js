@@ -40,13 +40,13 @@ module.exports = Joi.object().keys({
       .required()
   }),
   CEP: Joi.string()
-    .regex(/^[0-9]{5}-[0-9]{3}$/)
+    .regex(/^[0-9]{8}$/)
     .required()
     .options({
       language: {
         string: {
           regex: {
-            base: 'must have the format XXXXX-XXX'
+            base: 'must have the format XXXXXXXX'
           }
         }
       }

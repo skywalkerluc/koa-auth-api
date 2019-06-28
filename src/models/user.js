@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
   ],
   CEP: { type: String, required: true },
   geolocation: {
-    type: { type: String },
+    type: { type: String, default: 'Point' },
     coordinates: { type: [Number] }
   },
   data_criacao: { type: Date, default: Date.now },
