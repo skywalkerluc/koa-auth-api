@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { verify } from 'jsonwebtoken';
 import User from '../models/user';
 import config from '../../config';
