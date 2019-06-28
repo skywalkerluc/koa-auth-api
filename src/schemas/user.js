@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-module.exports = Joi.object().keys({
+export default Joi.object().keys({
   nome: Joi.string()
     .max(254)
     .required()

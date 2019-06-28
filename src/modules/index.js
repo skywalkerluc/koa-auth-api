@@ -1,3 +1,8 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable func-names */
+/* eslint-disable prefer-destructuring */
+/* eslint-disable global-require */
+/* eslint-disable no-multi-assign */
 import glob from 'glob';
 import Router from 'koa-router';
 
@@ -20,7 +25,7 @@ exports = module.exports = function initModules(app) {
         const lastHandler = handlers.pop();
 
         instance[method.toLowerCase()](route, ...handlers, async function(ctx) {
-          return await lastHandler(ctx);
+          return lastHandler(ctx);
         });
 
         app.use(instance.routes()).use(instance.allowedMethods());

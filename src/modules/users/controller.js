@@ -1,9 +1,8 @@
 /* eslint-disable consistent-return */
 import Joi from 'joi';
 import UserModel from '../../models/user';
-import * as geocode from '../../utils/geocode';
-
-const userSchema = require('../../schemas/user');
+import obtainCoordinates from '../../utils/geocode';
+import userSchema from '../../schemas/user';
 
 export async function createUser(ctx) {
   let userPayload;
@@ -11,8 +10,8 @@ export async function createUser(ctx) {
     await Joi.validate(ctx.request.body, userSchema, { abortEarly: false });
 
     userPayload = new UserModel(ctx.request.body);
-    const { lat, lng } = await geocode.obtainCoordinates(userPayload.CEP);
-    userPayload.geolocation.coordinates = [lat, lng];
+    const obj = await obtainCoordinates(userPayload.CEP);
+    userPayload.geolocation.coordinates = [obj.lat, obj.lng];
 
     userPayload.token = userPayload.generateToken();
     await userPayload.save();

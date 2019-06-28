@@ -1,5 +1,4 @@
-/* eslint-disable import/prefer-default-export */
-export function getToken(ctx) {
+export default function getToken(ctx) {
   const header = ctx.request.header.authentication;
   if (!header) {
     return null;

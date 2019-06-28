@@ -1,5 +1,5 @@
-/* eslint-disable consistent-return */
 /* eslint-disable no-use-before-define */
+/* eslint-disable consistent-return */
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -10,7 +10,9 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    validate: {
+      validator: async email => (await User.where({ email }).countDocuments()) === 0
+    }
   },
   senha: { type: String, required: true },
   telefones: [

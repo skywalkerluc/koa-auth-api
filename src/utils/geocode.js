@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 /* eslint-disable consistent-return */
 import * as axios from 'axios';
 import config from '../../config';
@@ -19,18 +18,16 @@ const getCoordinatesByPostalCode = cep => {
   }
 };
 
-export const obtainCoordinates = async cep => {
-  return new Promise((resolve, reject) => {
-    getCoordinatesByPostalCode(cep)
-      .then(response => {
-        const data = response.data.results[0];
-        return resolve({
-          lat: data.geometry.location.lat,
-          lng: data.geometry.location.lng
-        });
-      })
-      .catch(err => {
-        reject(err);
-      });
-  });
-};
+export default async function obtainCoordinates(cep) {
+  return getCoordinatesByPostalCode(cep)
+    .then(response => {
+      const data = response.data.results[0];
+      return {
+        lat: data.geometry.location.lat,
+        lng: data.geometry.location.lng
+      };
+    })
+    .catch(() => {
+      throw new { message: 'CEP inválido!' }();
+    });
+}

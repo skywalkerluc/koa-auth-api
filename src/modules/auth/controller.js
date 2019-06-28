@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/prefer-default-export */
 import bcrypt from 'bcrypt';
 import UserModel from '../../models/user';
 
-export async function authUser(ctx) {
+export default async function authUser(ctx) {
   const loginData = ctx.request.body;
   const user = await UserModel.findOne({ email: loginData.email });
   if (!user) {

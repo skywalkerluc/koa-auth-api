@@ -2,9 +2,9 @@
 import { verify } from 'jsonwebtoken';
 import User from '../models/user';
 import config from '../../config';
-import { getToken } from '../utils/auth';
+import getToken from '../utils/auth';
 
-export async function ensureUser(ctx, next) {
+export default async function ensureUser(ctx, next) {
   const token = getToken(ctx);
 
   if (!token) {
